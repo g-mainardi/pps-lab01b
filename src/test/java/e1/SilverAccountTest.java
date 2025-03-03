@@ -8,30 +8,16 @@ import static e1.SilverBankAccount.FEE_AMOUNT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BankAccountTest {
-
-    public static final int DEPOSIT_AMOUNT = 1000;
-    public static final int WITHDRAW_AMOUNT = 200;
+public class SilverAccountTest extends BankAccountAbstractTest {
     public static final int WITHDRAW_TOO_HIGH_AMOUNT = 1200;
-    private BankAccount account;
 
     @BeforeEach
-    void init(){
+    void init() {
         this.account = new SilverBankAccount(new CoreBankAccount());
     }
 
     @Test
-    public void testInitiallyEmpty() {
-        assertEquals(0, this.account.getBalance());
-    }
-
-    @Test
-    public void testCanDeposit() {
-        this.account.deposit(DEPOSIT_AMOUNT);
-        assertEquals(INITIAL_BALANCE + DEPOSIT_AMOUNT, this.account.getBalance());
-    }
-
-    @Test
+    @Override
     public void testCanWithdraw() {
         var expectedAmount = INITIAL_BALANCE;
         this.account.deposit(DEPOSIT_AMOUNT);
@@ -42,6 +28,7 @@ public class BankAccountTest {
     }
 
     @Test
+    @Override
     public void testCannotWithdrawMoreThanAvailable(){
         this.account.deposit(DEPOSIT_AMOUNT);
         assertThrows(IllegalStateException.class, () -> this.account.withdraw(WITHDRAW_TOO_HIGH_AMOUNT));

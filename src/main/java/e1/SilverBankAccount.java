@@ -1,26 +1,19 @@
 package e1;
 
-public class SilverBankAccount implements BankAccount{
+public class SilverBankAccount extends AbstractBankAccount {
 
     public static final int FEE_AMOUNT = 1;
-    private BankAccount base;
 
     public SilverBankAccount(BankAccount base) {
-        this.base = base;
+        super(base);
     }
 
-    public int getBalance() {
-        return base.getBalance();
+    @Override
+    public int getFee(final int amount) {
+        return FEE_AMOUNT;
     }
 
-    public void deposit(int amount) {
-        base.deposit(amount);
-    }
-
-    public void withdraw(int amount) {
-        if (this.getBalance() < amount){
-            throw new IllegalStateException();
-        }
-        base.withdraw(amount + FEE_AMOUNT);
+    public boolean canWithdraw(int amount) {
+        return this.getBalance() >= amount;
     }
 }

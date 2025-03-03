@@ -2,6 +2,7 @@ package e1;
 
 public class SilverBankAccount implements BankAccount{
 
+    public static final int FEE_AMOUNT = 1;
     private BankAccount base;
 
     public SilverBankAccount(BankAccount base) {
@@ -20,6 +21,6 @@ public class SilverBankAccount implements BankAccount{
         if (this.getBalance() < amount){
             throw new IllegalStateException();
         }
-        base.withdraw(amount + 1);
+        base.withdraw(amount + FEE_AMOUNT);
     }
 }

@@ -2,7 +2,8 @@ package e1;
 
 class CoreBankAccount implements BankAccount{
 
-    private int balance = 0;
+    public static final int INITIAL_BALANCE = 0;
+    private int balance = INITIAL_BALANCE;
 
     public int getBalance() {
         return this.balance;

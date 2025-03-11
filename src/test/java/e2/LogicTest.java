@@ -17,11 +17,11 @@ public class LogicTest {
   Logics logics;
 
   public void init() {
-    logics = new LogicsImpl(PAWN, KNIGHT, SIZE);
+    logics = new LogicsImpl(new ChessBoard(SIZE, PAWN, KNIGHT), new KnightRules());
   }
 
   public void initRandom() {
-    logics = new LogicsImpl(SIZE);
+    logics = new LogicsImpl(new ChessBoard(SIZE), new KnightRules());
   }
 
   @Test
